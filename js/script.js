@@ -130,3 +130,67 @@ function animateCounter() {
         requestAnimationFrame(updateCounter);
     });
 }
+
+/* BARRA DE PROGRESO SCROLL */
+
+function updateScrollProgress(){
+    const scrollProgress = document.querySelector(".scroll-progress-bar");
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrollPosition = window.scrollY;
+
+    const scrollPercentage = (scrollPosition / documentHeight) * 100;
+    scrollProgress.style.width = scrollPercentage + "%";
+}
+
+/* MODO OSCURO */
+function toggleDarkMode(){
+    const body = document.body;
+    const isDarkMode = body.classList.toggle('dark-mode');
+
+    localStorage.setItem('darkMode', isDarkMode);
+
+    updateThemeIcon(isDarkMode);
+}
+
+function updateThemeIcon(isDarkMode){
+    const themeToggle = document.querySelector('.theme-toggle')
+}
+
+function loadThemePreference(){
+    const savedTheme = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia(`(prefers-color-scheme: dark)`).matches;
+
+    if(savedTheme !== null){
+        if(savedTheme === 'true') {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon(true);
+        }
+    } else if (prefersDark){
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    window.addEventListener('scroll', updateScrollProgress);
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', toggleDarkMode);
+
+    loadThemePreference();
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)=>{
+        if(localStorage.getItem('darkMode') === null){
+            if(e.matches){
+                document.body.classList.add('dark-mode');
+                updateThemeIcon(true);
+            } else{
+                document.body.classList.remove('dark-mode');
+                updateThemeIcon(false);
+            }
+        }
+    });
+});

@@ -962,3 +962,172 @@ hero
 .contact-info > *{
     justify-content: center;
 }
+
+
+/* ===BARRA DE PROGRESO SCROLL=== */
+
+.scroll-progress-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+}
+
+
+.scroll-progress-bar{
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--verde-primario), var(--verde-oscuro));
+    transition: width 0.3 ease;
+}
+
+/* === BOTÓN TOGGLE MODO OSCURO ===*/
+
+:root{
+    --bg-oscuro: #1a1a1a;
+    --texto-oscuro: #6A8E3E;
+    --card-oscuro: #2D2D2D;
+    --borde-oscuro: #404040;
+}
+
+body.dark-mode{
+    background-color: var(--bg-oscuro);
+    color: var(--texto-oscuro);
+}
+
+body.dark-mode .navbar{
+    background-color: var(--card-oscuro);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .nav-link{
+    color: var(--texto-oscuro);
+}
+body.dark-mode .nav-link:hover{
+    color: var(--verde-primario);
+}
+
+body.dark-mode .problem-solution,
+body.dark-mode .about,
+body.dark-mode .contact,
+body.dark-mode .faq,
+body.dark-mode .faq-answer{
+    background-color: var(--bg-oscuro);
+}
+
+body.dark-mode .products,
+body.dark-mode .process,
+body.dark-mode .stats{
+    background-color: #252525;
+}
+
+body.dark-mode .ps-box,
+body.dark-mode .product-card,
+body.dark-mode .value-item,
+body.dark-mode .stat-item,
+body.dark-mode .mv-card {
+    background-color: var(--card-oscuro);
+    border: 1px solid var(--borde-oscuro);
+}
+
+body.dark-mode .faq-item{
+    background-color: var(--card-oscuro);
+}
+
+body.dark-mode .faq-question{
+    background-color: #363636;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea{
+    background-color: var(--card-oscuro);
+    border-color: var(--borde-oscuro);
+    color: var(--texto-oscuro);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus{
+    border-color: var(--verde-primario);
+}
+
+body.dark-mode footer{
+    background-color: #111111;
+}
+
+body.dark-mode .footer-links a {
+    color: #b0b0b0;
+}
+
+body.dark-mode .theme-toggle .fa-moon{
+    display: block;
+}
+
+body.dark-mode .theme-toggle .fa-sun{
+    display: none;
+}
+
+body .theme-toggle .fa-moon{
+    display: none
+}
+
+body .theme-toggle .fa-sun{
+    display: block;
+}
+
+body.dark-mode .theme-toggle,  body .theme-toggle{
+    position: fixed;
+    right:2.5rem;
+    bottom: 2.5rem;
+    background-color: var(--verde-primario);
+    height: 2rem;
+    width: 2rem;
+    color: var(--blanco);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+body.dark-mode h1,
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4 {
+    color: var(--texto-oscuro);
+}
+
+body.dark-mode .problem{
+    background-color: #2a1f1f;
+}
+
+body.dark-mode .solution{
+    background-color: #1f2a1f;
+}
+
+body.dark-mode .hero-content h1{
+    color: var(--blanco)
+}
+
+
+@media screen and (max-width: 768px) {
+    .theme-toggle{
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .theme-toggle{
+        bottom: 15px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .scroll-progress-container{
+        height: 2px;
+    }
+}
