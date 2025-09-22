@@ -326,7 +326,7 @@ a {
 .best-price {
     background-color: var(--verde-primario);
     color: var(--blanco);
-    padding: 2.5px 5px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -961,5 +961,3 @@ hero
 .contact-info > *{
     justify-content: center;
 }
-
-/* .best-price */
