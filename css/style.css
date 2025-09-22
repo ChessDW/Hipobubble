@@ -1122,6 +1122,9 @@ body.dark-mode .hero-content h1{
         width: 45px;
         height: 45px;
     }
+    .nav-menu{
+        background-color: var(--bg-oscuro);
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -1135,6 +1138,10 @@ body.dark-mode .hero-content h1{
 
     .scroll-progress-container{
         height: 5px;
+    }
+
+    .nav-menu{
+        background-color: var(--bg-oscuro);
     }
 }
 
