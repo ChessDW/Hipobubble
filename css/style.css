@@ -919,7 +919,7 @@ hero
 /* Responsive */
 @media screen and (max-width: 768px) {
     body {
-        padding: 1rem;
+        padding: 0.5rem;
     }
     
     .container {
