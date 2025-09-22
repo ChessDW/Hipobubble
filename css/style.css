@@ -1122,7 +1122,7 @@ body.dark-mode .hero-content h1{
         width: 45px;
         height: 45px;
     }
-    .nav-menu{
+    body.dark-mode .nav-menu{
         background-color: var(--bg-oscuro);
     }
 }
@@ -1140,7 +1140,7 @@ body.dark-mode .hero-content h1{
         height: 5px;
     }
 
-    .nav-menu{
+    body.dark-mode .nav-menu{
         background-color: var(--bg-oscuro);
     }
 }
