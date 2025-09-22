@@ -81,7 +81,12 @@ a {
 .nav-menu {
     display: flex;
     list-style: none;
+/*     display: none; */
 }
+
+/* .nav-menu.active{
+    display: block;
+} */
 
 .nav-item {
     margin-left: 2rem;
@@ -1087,6 +1092,7 @@ body.dark-mode .theme-toggle,  body .theme-toggle{
     color: var(--blanco);
     border-radius: 50%;
     cursor: pointer;
+    z-index: 50000;
 }
 
 body.dark-mode h1,
@@ -1128,6 +1134,10 @@ body.dark-mode .hero-content h1{
     }
 
     .scroll-progress-container{
-        height: 2px;
+        height: 5px;
     }
+}
+
+body, html{
+    overflow-x: hidden;
 }
