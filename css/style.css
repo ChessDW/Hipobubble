@@ -1116,7 +1116,7 @@ body .theme-toggle .fa-sun{
 
 body.dark-mode .theme-toggle,  body .theme-toggle{
     position: fixed;
-    right:2.5rem;
+    left: 2.5rem;
     bottom: 2.5rem;
     background-color: var(--verde-primario);
     height: 2rem;
@@ -1150,7 +1150,8 @@ body.dark-mode .hero-content h1{
 @media screen and (max-width: 768px) {
     .theme-toggle{
         bottom: 20px;
-        right: 20px;
+        left: 20px;
+        right: auto;
         width: 45px;
         height: 45px;
     }
@@ -1162,7 +1163,8 @@ body.dark-mode .hero-content h1{
 @media screen and (max-width: 480px) {
     .theme-toggle{
         bottom: 15px;
-        right: 20px;
+        left: 15px;
+        right: auto;
         width: 40px;
         height: 40px;
         font-size: 1rem;
