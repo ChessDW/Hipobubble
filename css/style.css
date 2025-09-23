@@ -1,3 +1,35 @@
+/* Botón Volver Arriba */
+#backToTop {
+    background: var(--primario, #4CAF50);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+}
+#backToTop:hover {
+    background: var(--primario-oscuro, #388E3C);
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+/* Resaltar enlace activo en menú de navegación */
+.nav-link.active {
+    color: var(--primario, #4CAF50) !important;
+    font-weight: bold;
+    border-bottom: 2px solid var(--primario, #4CAF50);
+    background: rgba(76,175,80,0.08);
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+}
 /* Variables y reset */
 :root {
     --verde-primario: #88B04B;
