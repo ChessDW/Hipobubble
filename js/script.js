@@ -98,6 +98,15 @@ window.addEventListener('scroll', function() {
         navbar.style.background = 'var(--blanco)';
         navbar.style.backdropFilter = 'none';
     }
+    // Mostrar/ocultar botón volver arriba
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        if (window.scrollY > 300) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    }
 });
 
 // Contador de estadísticas - VERSIÓN CON requestAnimationFrame (más suave)
@@ -192,5 +201,32 @@ document.addEventListener('DOMContentLoaded', function(){
                 updateThemeIcon(false);
             }
         }
+    });
+
+    // Botón volver arriba
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Resaltar sección activa en el menú de navegación
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
     });
 });
