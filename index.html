@@ -29,22 +29,27 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#inicio" class="nav-link">Inicio</a>
+                        <a href="#inicio" class="nav-link" data-i18n="nav_inicio">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#productos" class="nav-link">Productos</a>
+                        <a href="#productos" class="nav-link" data-i18n="nav_productos">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#nosotros" class="nav-link">Nosotros</a>
+                        <a href="#nosotros" class="nav-link" data-i18n="nav_nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#proceso" class="nav-link">Proceso</a>
+                        <a href="#proceso" class="nav-link" data-i18n="nav_proceso">Proceso</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#faq" class="nav-link">FAQ</a>
+                        <a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#contacto" class="nav-link">Contacto</a>
+                        <a href="#contacto" class="nav-link" data-i18n="nav_contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item nav-config">
+                        <button id="openConfigModal" aria-label="Configuración" class="nav-config-btn">
+                            <i class="fas fa-cog"></i>
+                        </button>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -59,11 +64,11 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1>Más natural, menos alergias</h1>
-            <p>Jabones 100% naturales, hipoalergénicos y hechos a mano en Costa Rica. La solución efectiva y accesible para pieles sensibles.</p>
+            <h1 data-i18n="hero_title">Más natural, menos alergias</h1>
+            <p data-i18n="hero_desc">Jabones 100% naturales, hipoalergénicos y hechos a mano en Costa Rica. La solución efectiva y accesible para pieles sensibles.</p>
             <div class="hero-buttons">
-                <a href="#productos" class="btn btn-primary">Descubrir Jabones</a>
-                <a href="#nosotros" class="btn btn-secondary">Sobre Nosotros</a>
+                <a href="#productos" class="btn btn-primary" data-i18n="hero_btn1">Descubrir Jabones</a>
+                <a href="#nosotros" class="btn btn-secondary" data-i18n="hero_btn2">Sobre Nosotros</a>
             </div>
         </div>
         <div class="hero-scroll-indicator">
@@ -76,29 +81,48 @@
 
     <!-- Problema/Solución Section -->
     <section class="problem-solution">
-        <button class="theme-toggle" aria-label="Cambiar modo oscuro/claro">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-        </button>
         <div class="container">
-            <h2>Alergias en la piel, ¿sin solución?</h2>
+    <!-- Modal de Configuración -->
+    <div id="configModal" class="config-modal">
+        <div class="config-modal-content">
+            <span class="config-modal-close" id="closeConfigModal" aria-label="Cerrar">&times;</span>
+            <h3>Configuración</h3>
+            <div class="config-option">
+                <label for="toggleDarkModeModal">
+                    <i class="fas fa-moon"></i> <span data-i18n="dark_mode">Modo oscuro</span>
+                </label>
+                <input type="checkbox" id="toggleDarkModeModal" />
+            </div>
+            <div class="config-option">
+                <label for="languageSelect">
+                    <i class="fas fa-language"></i> <span data-i18n="language">Idioma</span>
+                </label>
+                <select id="languageSelect">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+        </div>
+    </div>
+            <h2 data-i18n="ps_title">Alergias en la piel, ¿sin solución?</h2>
             <div class="ps-container">
                 <div class="ps-box problem">
-                    <h3>El Problema</h3>
+                    <h3 data-i18n="ps_problem_title">El Problema</h3>
                     <ul>
-                        <li><i class="fas fa-times-circle"></i> Jabones con químicos agresivos</li>
-                        <li><i class="fas fa-times-circle"></i> Precios elevados</li>
-                        <li><i class="fas fa-times-circle"></i> Resultados que decepcionan</li>
-                        <li><i class="fas fa-times-circle"></i> Fragancias artificiales</li>
+                            <li><i class="fas fa-times-circle"></i> <span data-i18n="ps_problem1">Jabones con químicos agresivos</span></li>
+                            <li><i class="fas fa-times-circle"></i> <span data-i18n="ps_problem2">Precios elevados</span></li>
+                            <li><i class="fas fa-times-circle"></i> <span data-i18n="ps_problem3">Resultados que decepcionan</span></li>
+                            <li><i class="fas fa-times-circle"></i> <span data-i18n="ps_problem4">Fragancias artificiales</span></li>
                     </ul>
                 </div>
                 <div class="ps-box solution">
-                    <h3>La Solución: Hipobubble</h3>
+                    <h3 data-i18n="ps_solution_title">La Solución: Hipobubble</h3>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> Ingredientes 100% naturales</li>
-                        <li><i class="fas fa-check-circle"></i> Precio justo y accesible</li>
-                        <li><i class="fas fa-check-circle"></i> Hecho a mano con glicerina</li>
-                        <li><i class="fas fa-check-circle"></i> Eficacia comprobada con aceites naturales</li>
+                            <li><i class="fas fa-check-circle"></i> <span data-i18n="ps_solution1">Ingredientes 100% naturales</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span data-i18n="ps_solution2">Precio justo y accesible</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span data-i18n="ps_solution3">Hecho a mano con glicerina</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span data-i18n="ps_solution4">Eficacia comprobada con aceites naturales</span></li>
                     </ul>
                 </div>
             </div>
@@ -111,19 +135,19 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number" data-count="+300">0</div>
-                    <div class="stat-label">Clientes satisfechos</div>
+                    <div class="stat-label" data-i18n="stat_clients">Clientes satisfechos</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-count="98">0</div>
-                    <div class="stat-label">% de satisfacción</div>
+                    <div class="stat-label" data-i18n="stat_satisfaction">% de satisfacción</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-count="2">0</div>
-                    <div class="stat-label">Productos naturales</div>
+                    <div class="stat-label" data-i18n="stat_products">Productos naturales</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">% libre de químicos</div>
+                    <div class="stat-label" data-i18n="stat_chemical_free">% libre de químicos</div>
                 </div>
             </div>
         </div>
@@ -132,26 +156,26 @@
     <!-- Productos Section -->
     <section id="productos" class="products">
         <div class="container">
-            <h2>Conoce la fórmula de la calma</h2>
+            <h2 data-i18n="products_title">Conoce la fórmula de la calma</h2>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
                         <img src="media/benjui.png" alt="Jabón de Aceite de Benjuí - Tamaño Normal" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div class="product-info">
-                        <h3>Jabón de Aceite de Benjuí</h3>
-                        <p class="product-desc">Alivia irritaciones actuando como un protector cutáneo, antiinflamatorio y con propiedades antisépticas.</p>
+                        <h3 data-i18n="product1_title">Jabón de Aceite de Benjuí</h3>
+                        <p class="product-desc" data-i18n="product1_desc">Alivia irritaciones actuando como un protector cutáneo, antiinflamatorio y con propiedades antisépticas.</p>
                         <div class="ingredients">
-                            <h4>Ingredientes principales:</h4>
+                            <h4 data-i18n="ingredients_title">Ingredientes principales:</h4>
                             <ul>
-                                <li><i class="fas fa-leaf"></i> Glicerina - Limpia sin irritar</li>
-                                <li><i class="fas fa-leaf"></i> Aceite de Benjuí - Alivia irritaciones</li>
-                                <li><i class="fas fa-leaf"></i> Vitamina E - Antioxidante e hidratante</li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_glycerin">Glicerina - Limpia sin irritar</span></li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_benjui">Aceite de Benjuí - Alivia irritaciones</span></li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_vitE">Vitamina E - Antioxidante e hidratante</span></li>
                             </ul>
                         </div>
                         <div class="product-price">
                             <span class="price">₡3,500</span>
-                            <span class="best-price">Mejor relación calidad-precio</span>
+                            <span class="best-price" data-i18n="best_price">Mejor relación calidad-precio</span>
                         </div>
                     </div>
                 </div>
@@ -161,19 +185,19 @@
                         <img src="media/zacate-limon.png" alt="Jabón de Zacate de Limón - Tamaño Pequeño" style="width:100%; height:100%; object-fit:cover;">
                     </div>
                     <div class="product-info">
-                        <h3>Jabón de Zacate de Limón</h3>
-                        <p class="product-desc">Propiedades antibacterianas y frescura natural para una limpieza profunda y refrescante.</p>
+                        <h3 data-i18n="product2_title">Jabón de Zacate de Limón</h3>
+                        <p class="product-desc" data-i18n="product2_desc">Propiedades antibacterianas y frescura natural para una limpieza profunda y refrescante.</p>
                         <div class="ingredients">
                             <h4>Ingredientes principales:</h4>
                             <ul>
-                                <li><i class="fas fa-leaf"></i> Glicerina - Limpia sin irritar</li>
-                                <li><i class="fas fa-leaf"></i> Aceite de Zacate Limón - Antibacteriano y fresco</li>
-                                <li><i class="fas fa-leaf"></i> Vitamina E - Antioxidante e hidratante</li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_glycerin">Glicerina - Limpia sin irritar</span></li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_zacate">Aceite de Zacate Limón - Antibacteriano y fresco</span></li>
+                                <li><i class="fas fa-leaf"></i> <span data-i18n="ingredient_vitE">Vitamina E - Antioxidante e hidratante</span></li>
                             </ul>
                         </div>
                         <div class="product-price">
                             <span class="price">₡1,750</span>
-                            <span class="best-price">Mejor relación calidad-precio</span>
+                            <span class="best-price" data-i18n="best_price">Mejor relación calidad-precio</span>
                         </div>
                     </div>
                 </div>
@@ -184,51 +208,51 @@
     <!-- Nosotros Section -->
     <section id="nosotros" class="about">
         <div class="container">
-            <h2>Nuestra promesa de bienestar</h2>
+            <h2 data-i18n="about_title">Nuestra promesa de bienestar</h2>
             <div class="about-content">
                 <div class="mission-vision">
                     <div class="mv-card">
-                        <h3><i class="fas fa-bullseye"></i> Misión</h3>
-                        <p>Proveer productos de fácil acceso que faciliten y mejoren la vida de nuestros consumidores.</p>
+                        <h3><i class="fas fa-bullseye"></i> <span data-i18n="mission_title">Misión</span></h3>
+                        <p data-i18n="mission_desc">Proveer productos de fácil acceso que faciliten y mejoren la vida de nuestros consumidores.</p>
                     </div>
                     <div class="mv-card">
-                        <h3><i class="fas fa-eye"></i> Visión</h3>
-                        <p>Convertirnos en la empresa de productos del cuidado de la piel más influyente en el mercado internacional.</p>
+                        <h3><i class="fas fa-eye"></i> <span data-i18n="vision_title">Visión</span></h3>
+                        <p data-i18n="vision_desc">Convertirnos en la empresa de productos del cuidado de la piel más influyente en el mercado internacional.</p>
                     </div>
                 </div>
 
                 <div class="values">
-                    <h3>Nuestros Valores</h3>
+                    <h3 data-i18n="values_title">Nuestros Valores</h3>
                     <div class="values-grid">
                         <div class="value-item">
                             <i class="fas fa-star"></i>
-                            <h4>Calidad</h4>
-                            <p>Buscamos proveer productos que garanticen un resultado satisfactorio.</p>
+                            <h4 data-i18n="value_quality">Calidad</h4>
+                            <p data-i18n="value_quality_desc">Buscamos proveer productos que garanticen un resultado satisfactorio.</p>
                         </div>
                         <div class="value-item">
                             <i class="fas fa-handshake"></i>
-                            <h4>Honestidad</h4>
-                            <p>Buscamos vender un producto confiable y cumplir con lo que prometemos.</p>
+                            <h4 data-i18n="value_honesty">Honestidad</h4>
+                            <p data-i18n="value_honesty_desc">Buscamos vender un producto confiable y cumplir con lo que prometemos.</p>
                         </div>
                         <div class="value-item">
                             <i class="fas fa-lightbulb"></i>
-                            <h4>Innovación</h4>
-                            <p>Crear nuevos productos y mejorar los actuales para adaptarnos a las necesidades.</p>
+                            <h4 data-i18n="value_innovation">Innovación</h4>
+                            <p data-i18n="value_innovation_desc">Crear nuevos productos y mejorar los actuales para adaptarnos a las necesidades.</p>
                         </div>
                         <div class="value-item">
                             <i class="fas fa-users"></i>
-                            <h4>Diversidad</h4>
-                            <p>Garantizar un ambiente laboral respetuoso donde todos se sientan valorados.</p>
+                            <h4 data-i18n="value_diversity">Diversidad</h4>
+                            <p data-i18n="value_diversity_desc">Garantizar un ambiente laboral respetuoso donde todos se sientan valorados.</p>
                         </div>
                         <div class="value-item">
                             <i class="fas fa-user-check"></i>
-                            <h4>Orientación al cliente</h4>
-                            <p>Creemos que la buena atención hacia nuestros clientes es fundamental.</p>
+                            <h4 data-i18n="value_customer">Orientación al cliente</h4>
+                            <p data-i18n="value_customer_desc">Creemos que la buena atención hacia nuestros clientes es fundamental.</p>
                         </div>
                         <div class="value-item">
                             <i class="fas fa-crown"></i>
-                            <h4>Exclusividad</h4>
-                            <p>Crear productos únicos y especiales para resaltar ante otras empresas.</p>
+                            <h4 data-i18n="value_exclusivity">Exclusividad</h4>
+                            <p data-i18n="value_exclusivity_desc">Crear productos únicos y especiales para resaltar ante otras empresas.</p>
                         </div>
                     </div>
                 </div>
@@ -239,19 +263,19 @@
     <!-- Proceso Section -->
     <section id="proceso" class="process">
         <div class="container">
-            <h2>Hecho a mano, pensado para ti</h2>
+            <h2 data-i18n="process_title">Hecho a mano, pensado para ti</h2>
             <div class="process-steps">
                 <div class="process-step">
-                    <h3>Selección de ingredientes</h3>
-                    <p>Seleccionamos cuidadosamente cada ingrediente natural para garantizar la máxima calidad y beneficios para pieles sensibles.</p>
+                    <h3 data-i18n="process_step1_title">Selección de ingredientes</h3>
+                    <p data-i18n="process_step1_desc">Seleccionamos cuidadosamente cada ingrediente natural para garantizar la máxima calidad y beneficios para pieles sensibles.</p>
                 </div>
                 <div class="process-step">
-                    <h3>Elaboración artesanal</h3>
-                    <p>Cada jabón es elaborado a mano con dedicación y cuidado en cada paso del proceso, asegurando su calidad hipoalergénica.</p>
+                    <h3 data-i18n="process_step2_title">Elaboración artesanal</h3>
+                    <p data-i18n="process_step2_desc">Cada jabón es elaborado a mano con dedicación y cuidado en cada paso del proceso, asegurando su calidad hipoalergénica.</p>
                 </div>
                 <div class="process-step">
-                    <h3>Control de calidad</h3>
-                    <p>Realizamos pruebas rigurosas para garantizar que cada jabón cumple con nuestros estándares de calidad y efectividad.</p>
+                    <h3 data-i18n="process_step3_title">Control de calidad</h3>
+                    <p data-i18n="process_step3_desc">Realizamos pruebas rigurosas para garantizar que cada jabón cumple con nuestros estándares de calidad y efectividad.</p>
                 </div>
             </div>
         </div>
@@ -261,42 +285,42 @@
     <!-- FAQ Section -->
     <section id="faq" class="faq">
         <div class="container">
-            <h2>Preguntas Frecuentes</h2>
+            <h2 data-i18n="faq_title">Preguntas Frecuentes</h2>
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>¿Son realmente hipoalergénicos sus jabones?</h3>
+                        <h3 data-i18n="faq_q1">¿Son realmente hipoalergénicos sus jabones?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Sí, todos nuestros jabones están formulados específicamente para pieles sensibles y son 100% hipoalergénicos. Utilizamos solo ingredientes naturales que minimizan el riesgo de reacciones alérgicas.</p>
+                        <p data-i18n="faq_a1">Sí, todos nuestros jabones están formulados específicamente para pieles sensibles y son 100% hipoalergénicos. Utilizamos solo ingredientes naturales que minimizan el riesgo de reacciones alérgicas.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>¿Dónde puedo comprar sus productos?</h3>
+                        <h3 data-i18n="faq_q2">¿Dónde puedo comprar sus productos?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Actualmente somos una empresa emergente de estudiantes, no contamos con producción masiva de productos, para contactarnos, envia un mensaje a nuestra cuenta de <i class="fab fa-instagram"></i> Instagram.</p>
+                        <p data-i18n="faq_a2">Actualmente somos una empresa emergente de estudiantes, no contamos con producción masiva de productos, para contactarnos, envia un mensaje a nuestra cuenta de <i class="fab fa-instagram"></i> Instagram.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>¿Cómo se aseguran de la calidad del producto?</h3>
+                        <h3 data-i18n="faq_q3">¿Cómo se aseguran de la calidad del producto?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Nosotros preparamos artesanalmente cada producto, luego, los analizamos a profundidad para asegurarnos de que todo lo que le llegue a nuestros clientes sea perfecto.</p>
+                        <p data-i18n="faq_a3">Nosotros preparamos artesanalmente cada producto, luego, los analizamos a profundidad para asegurarnos de que todo lo que le llegue a nuestros clientes sea perfecto.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>¿Sus productos son cruelty-free?</h3>
+                        <h3 data-i18n="faq_q4">¿Sus productos son cruelty-free?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutamente. Todos nuestros productos son cruelty-free y no probamos en animales. Estamos comprometidos con el bienestar animal y la sostenibilidad.</p>
+                        <p data-i18n="faq_a4">Absolutamente. Todos nuestros productos son cruelty-free y no probamos en animales. Estamos comprometidos con el bienestar animal y la sostenibilidad.</p>
                     </div>
                 </div>
             </div>
@@ -306,12 +330,12 @@
     <!-- Contacto Section -->
     <section id="contacto" class="contact">
         <div class="container">
-            <h2>¿Tienes dudas? Contáctanos</h2>
+            <h2 data-i18n="contact_title">¿Tienes dudas? Contáctanos</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Información de contacto</h3>
-                    <p><i class="fab fa-instagram"></i>@hipo_bubble</p>
-                    <p><i class="fas fa-map-marker-alt"></i>COTEPECOS, Costa Rica</p>
+                    <h3 data-i18n="contact_info_title">Información de contacto</h3>
+                    <p><i class="fab fa-instagram"></i><span data-i18n="contact_instagram">@hipo_bubble</span></p>
+                    <p><i class="fas fa-map-marker-alt"></i><span data-i18n="contact_location">COTEPECOS, Costa Rica</span></p>
                     
                     <div class="social-links">
                         <a href="https://www.instagram.com/hipo_bubble?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
@@ -327,22 +351,22 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>Hipobubble</h3>
-                    <p>Más natural, menos alergias</p>
+                    <h3 data-i18n="footer_brand">Hipobubble</h3>
+                    <p data-i18n="footer_slogan">Más natural, menos alergias</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
+                    <h4 data-i18n="footer_links_title">Enlaces rápidos</h4>
                     <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#inicio" data-i18n="nav_inicio">Inicio</a></li>
+                        <li><a href="#productos" data-i18n="nav_productos">Productos</a></li>
+                        <li><a href="#nosotros" data-i18n="nav_nosotros">Nosotros</a></li>
+                        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+                        <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Hipobubble - Colegio Técnico Profesional de Educación Comercial y de Servicios - Andrés Delgado (DW)</p>
+                <p data-i18n="footer_copyright">&copy; 2025 Hipobubble - Colegio Técnico Profesional de Educación Comercial y de Servicios - Andrés Delgado (DW)</p>
             </div>
         </div>
     </footer>
