@@ -1182,3 +1182,13 @@ body.dark-mode .hero-content h1{
 body, html{
     overflow-x: hidden;
 }
+
+btn#backToTop{
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    padding-left: 15px;
+    padding-right: 20px;
+}
