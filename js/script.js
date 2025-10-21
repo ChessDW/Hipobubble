@@ -82,7 +82,8 @@ const translations = {
         footer_brand: "Hipobubble",
         footer_slogan: "Más natural, menos alergias",
         footer_links_title: "Enlaces rápidos",
-        footer_copyright: "© 2025 Hipobubble - Colegio Técnico Profesional de Educación Comercial y de Servicios - Andrés Delgado (DW)"
+        quiz_title: "Descubre el jabón ideal para tu piel",
+        footer_copyright: "© 2025 Hipobubble - Colegio Técnico Profesional de Educación Comercial y de Servicios - "
     },
     en: {
         dark_mode: "Dark mode",
@@ -100,6 +101,7 @@ const translations = {
         hero_btn1: "Discover Soaps",
         hero_btn2: "About Us",
         stat_clients: "Satisfied clients",
+        quiz_title: "Discover the perfect soap for your skin",
         stat_satisfaction: "% satisfaction",
         stat_products: "Natural products",
         stat_chemical_free: "% chemical-free",
@@ -166,7 +168,7 @@ const translations = {
         footer_brand: "Hipobubble",
         footer_slogan: "More natural, less allergies",
         footer_links_title: "Quick links",
-        footer_copyright: "© 2025 Hipobubble - Technical Professional College of Commercial and Service Education - Andrés Delgado (DW)"
+        footer_copyright: "© 2025 Hipobubble - Technical Professional College of Commercial and Service Education - "
     },
     fr: {
         dark_mode: "Mode sombre",
@@ -248,9 +250,10 @@ const translations = {
         contact_instagram: "@hipo_bubble",
         contact_location: "COTEPECOS, Costa Rica",
         footer_brand: "Hipobubble",
+        quiz_title: "Découvrez le savon parfait pour votre peau",
         footer_slogan: "Plus naturel, moins d'allergies",
         footer_links_title: "Liens rapides",
-        footer_copyright: "© 2025 Hipobubble - Collège Technique Professionnel d'Éducation Commerciale et de Services - Andrés Delgado (DW)"
+        footer_copyright: "© 2025 Hipobubble - Collège Technique Professionnel d'Éducation Commerciale et de Services - "
     }
 };
 
@@ -551,4 +554,396 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     });
+});
+
+// Quiz de Piel Sensible
+class SkinQuiz {
+    constructor() {
+        this.currentStep = 1;
+        this.totalSteps = 4;
+        this.answers = {};
+        this.results = {
+            'benjui': {
+                title: 'Jabón de Aceite de Benjuí',
+                description: 'Ideal para pieles sensibles que necesitan calma y protección antiinflamatoria.',
+                reasons: [
+                    'Alivia irritaciones y enrojecimiento',
+                    'Actúa como protector cutáneo natural',
+                    'Propiedades antiinflamatorias comprobadas'
+                ]
+            },
+            'zacate': {
+                title: 'Jabón de Zacate de Limón',
+                description: 'Perfecto para pieles que buscan frescura y limpieza profunda sin agresividad.',
+                reasons: [
+                    'Propiedades antibacterianas naturales',
+                    'Frescura que revitaliza la piel',
+                    'Limpieza profunda sin resecar'
+                ]
+            },
+            'mixto': {
+                title: 'Combinación Perfecta',
+                description: 'Te recomendamos usar ambos jabones según tus necesidades del día.',
+                reasons: [
+                    'Benjuí para días de irritación',
+                    'Zacate Limón para frescura diaria',
+                    'Alternar según el estado de tu piel'
+                ]
+            }
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+        this.updateProgress();
+    }
+    
+    bindEvents() {
+        // Opciones del quiz
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', () => this.selectOption(option));
+        });
+        
+        // Navegación
+        document.getElementById('quizNext').addEventListener('click', () => this.nextStep());
+        document.getElementById('quizPrev').addEventListener('click', () => this.prevStep());
+        document.getElementById('quizRestart').addEventListener('click', () => this.restartQuiz());
+    }
+    
+    selectOption(option) {
+        const step = this.currentStep;
+        const value = option.getAttribute('data-value');
+        
+        // Remover selección anterior en este paso
+        document.querySelectorAll(`.quiz-step[data-step="${step}"] .quiz-option`).forEach(opt => {
+            opt.classList.remove('selected');
+        });
+        
+        // Seleccionar nueva opción
+        option.classList.add('selected');
+        this.answers[`step${step}`] = value;
+        
+        // Habilitar siguiente botón
+        document.getElementById('quizNext').disabled = false;
+    }
+    
+    nextStep() {
+        if (this.currentStep < this.totalSteps) {
+            document.querySelector(`.quiz-step[data-step="${this.currentStep}"]`).classList.remove('active');
+            this.currentStep++;
+            document.querySelector(`.quiz-step[data-step="${this.currentStep}"]`).classList.add('active');
+            this.updateProgress();
+            this.updateNavigation();
+        } else {
+            this.showResult();
+        }
+    }
+    
+    prevStep() {
+        if (this.currentStep > 1) {
+            document.querySelector(`.quiz-step[data-step="${this.currentStep}"]`).classList.remove('active');
+            this.currentStep--;
+            document.querySelector(`.quiz-step[data-step="${this.currentStep}"]`).classList.add('active');
+            this.updateProgress();
+            this.updateNavigation();
+        }
+    }
+    
+    updateProgress() {
+        document.getElementById('currentQuestion').textContent = this.currentStep;
+        const progressBar = document.querySelector('.progress-bar::after');
+        const progressWidth = (this.currentStep / this.totalSteps) * 100;
+        document.querySelector('.progress-bar').style.setProperty('--progress-width', `${progressWidth}%`);
+    }
+    
+    updateNavigation() {
+        document.getElementById('quizPrev').disabled = this.currentStep === 1;
+        document.getElementById('quizNext').textContent = 
+            this.currentStep === this.totalSteps ? 'Ver Resultado' : 'Siguiente';
+    }
+    
+    showResult() {
+        const result = this.calculateResult();
+        const resultElement = document.getElementById('quizResult');
+        const resultData = this.results[result];
+        
+        resultElement.innerHTML = `
+            <h3>¡Perfecto para tu piel!</h3>
+            <div class="result-product">
+                <h4>${resultData.title}</h4>
+                <p>${resultData.description}</p>
+                <ul>
+                    ${resultData.reasons.map(reason => `<li>${reason}</li>`).join('')}
+                </ul>
+            </div>
+            <p>💡 <strong>Consejo:</strong> ${this.getAdditionalTip(result)}</p>
+        `;
+        
+        resultElement.classList.add('active');
+        document.querySelector('.quiz-step.active').classList.remove('active');
+        document.getElementById('quizNext').style.display = 'none';
+        document.getElementById('quizRestart').style.display = 'block';
+    }
+    
+    calculateResult() {
+        // Lógica simple de recomendación
+        const answers = Object.values(this.answers);
+        
+        if (answers.includes('sensible') || answers.includes('picor') || answers.includes('enrojecimiento')) {
+            return 'benjui';
+        } else if (answers.includes('grasa') || answers.includes('suavidad')) {
+            return 'zacate';
+        } else {
+            return 'mixto';
+        }
+    }
+    
+    getAdditionalTip(result) {
+        const tips = {
+            'benjui': 'Usa el jabón de Benjuí por la noche para maximizar su efecto reparador.',
+            'zacate': 'Ideal para tu rutina matutina, te dará frescura para todo el día.',
+            'mixto': 'Alterna los jabones: Benjuí en días sensibles, Zacate Limón para frescura diaria.'
+        };
+        return tips[result];
+    }
+    
+    restartQuiz() {
+        this.currentStep = 1;
+        this.answers = {};
+        
+        // Reset UI
+        document.querySelectorAll('.quiz-step').forEach(step => step.classList.remove('active'));
+        document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
+        document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+        document.getElementById('quizResult').classList.remove('active');
+        document.getElementById('quizNext').style.display = 'block';
+        document.getElementById('quizRestart').style.display = 'none';
+        document.getElementById('quizNext').disabled = true;
+        
+        this.updateProgress();
+        this.updateNavigation();
+    }
+}
+
+// Inicializar quiz cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    new SkinQuiz();
+});
+
+// Scroll Animations
+class ScrollAnimations {
+    constructor() {
+        this.elements = [];
+        this.init();
+    }
+    
+    init() {
+        this.cacheElements();
+        this.createObserver();
+        this.bindEvents();
+    }
+    
+    cacheElements() {
+        // Elementos que queremos animar
+        this.elements = [
+            ...document.querySelectorAll('.ps-box'),
+            ...document.querySelectorAll('.product-card'),
+            ...document.querySelectorAll('.value-item'),
+            ...document.querySelectorAll('.process-step'),
+            ...document.querySelectorAll('.stat-item'),
+            ...document.querySelectorAll('.faq-item'),
+            ...document.querySelectorAll('.mv-card')
+        ];
+        
+        // Agregar clases de animación
+        this.elements.forEach((element, index) => {
+            element.classList.add('fade-in-scroll');
+            element.classList.add(`delay-${(index % 4) + 1}`);
+        });
+    }
+    
+    createObserver() {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: dejar de observar después de animar
+                    // this.observer.unobserve(entry.target);
+                } else {
+                    // Opcional: remover clase al salir de vista
+                    // entry.target.classList.remove('visible');
+                }
+            });
+        }, options);
+        
+        // Observar todos los elementos
+        this.elements.forEach(element => {
+            this.observer.observe(element);
+        });
+    }
+    
+    bindEvents() {
+        // Recalcular en resize para elementos dinámicos
+        window.addEventListener('resize', () => {
+            this.elements.forEach(element => {
+                this.observer.unobserve(element);
+                this.observer.observe(element);
+            });
+        });
+    }
+}
+
+// Efecto parallax simple
+function initParallax() {
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.parallax');
+        
+        parallaxElements.forEach(element => {
+            const speed = element.getAttribute('data-speed') || 0.5;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    new ScrollAnimations();
+    initParallax();
+});
+
+// Sistema de burbujas dinámicas
+class BubbleSystem {
+    constructor() {
+        this.bubbleContainer = document.querySelector('.bubble-background');
+        this.maxBubbles = 8;
+        this.init();
+    }
+    
+    init() {
+        this.createBubbles();
+        this.animateBubbles();
+    }
+    
+    createBubbles() {
+        if (!this.bubbleContainer) return;
+        
+        for (let i = 0; i < this.maxBubbles; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            // Posición y tamaño aleatorios
+            const size = Math.random() * 30 + 10;
+            const left = Math.random() * 100;
+            const animationDuration = Math.random() * 20 + 15;
+            const animationDelay = Math.random() * 10;
+            
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${left}%`;
+            bubble.style.animationDuration = `${animationDuration}s`;
+            bubble.style.animationDelay = `${animationDelay}s`;
+            
+            this.bubbleContainer.appendChild(bubble);
+        }
+    }
+    
+    animateBubbles() {
+        // Las burbujas se animan con CSS, pero podemos agregar interactividad
+        document.querySelectorAll('.bubble').forEach(bubble => {
+            bubble.addEventListener('mouseenter', () => {
+                bubble.style.animationPlayState = 'paused';
+                bubble.style.transform = 'scale(1.2)';
+            });
+            
+            bubble.addEventListener('mouseleave', () => {
+                bubble.style.animationPlayState = 'running';
+                bubble.style.transform = 'scale(1)';
+            });
+        });
+    }
+}
+
+// Efecto especial en el logo al hacer hover
+function initLogoEffects() {
+    const logo = document.querySelector('.logo-bubble');
+    if (!logo) return;
+    
+    logo.addEventListener('mouseenter', function() {
+        this.style.animation = 'bubblePop 0.6s ease';
+        
+        // Crear burbujas pequeñas alrededor
+        createMiniBubbles(this);
+    });
+    
+    logo.addEventListener('animationend', function() {
+        if (this.style.animationName === 'bubblePop') {
+            this.style.animation = 'floatBubble 3s ease-in-out infinite';
+        }
+    });
+}
+
+function createMiniBubbles(logo) {
+    const rect = logo.getBoundingClientRect();
+    
+    for (let i = 0; i < 5; i++) {
+        const miniBubble = document.createElement('div');
+        miniBubble.style.cssText = `
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: rgba(136, 176, 75, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            left: ${rect.left + rect.width / 2}px;
+            top: ${rect.top + rect.height / 2}px;
+            animation: miniBubbleFloat 1s ease-out forwards;
+        `;
+        
+        document.body.appendChild(miniBubble);
+        
+        // Configurar animación única para cada burbuja
+        const angle = (Math.random() * 360) * Math.PI / 180;
+        const distance = 30 + Math.random() * 20;
+        
+        miniBubble.style.setProperty('--end-x', `${Math.cos(angle) * distance}px`);
+        miniBubble.style.setProperty('--end-y', `${Math.sin(angle) * distance}px`);
+        
+        // Remover después de la animación
+        setTimeout(() => {
+            miniBubble.remove();
+        }, 1000);
+    }
+}
+
+// CSS para mini burbujas (agregar al CSS)
+const miniBubbleCSS = `
+@keyframes miniBubbleFloat {
+    to {
+        transform: translate(var(--end-x), var(--end-y));
+        opacity: 0;
+    }
+}
+`;
+
+// Inicializar todo cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Agregar CSS dinámico para mini burbujas
+    const style = document.createElement('style');
+    style.textContent = miniBubbleCSS;
+    document.head.appendChild(style);
+    
+    // Inicializar sistemas
+    new BubbleSystem();
+    initLogoEffects();
 });
